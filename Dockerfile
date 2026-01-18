@@ -20,13 +20,15 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
+ENV PORT=7000
+
 # Копируем только нужное из builder
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
-# Порт Next.js по умолчанию 3000 (можно изменить в .env или next.config.js)
-EXPOSE 3000
+# Порт Next.js по умолчанию 7000 (можно изменить в .env или next.config.js)
+EXPOSE 7000
 
 # Запускаем standalone-режим Next.js (самый эффективный для Docker)
-CMD ["node", "server.js"]
+CMD ["node", "server.js", "--port", "7000"]
