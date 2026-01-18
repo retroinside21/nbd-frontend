@@ -1,66 +1,103 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Image from 'next/image'
+import bg from '@/shared/assets/bg/bgLanding.png'
+import {
+  Box,
+} from '@mui/material'
+import Auth from '@/features/auth/ui/Auth'
+import MyLogo from '@/shared/assets/icons/logoLanding.svg'
+import GlobalSnackbar from '@/features/notify/ui/GlobalSnackbar'
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
+    <Box
+      sx={{
+        minHeight: '90vh',
+        position: 'relative',
+        bgcolor: 'var(--color-bgGray)',
+      }}
+    >
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: {
+            xs: '70vh',
+            md: '90vh',
+          },
+          overflow: 'hidden',
+          zIndex: 0,
+        }}
+      >
         <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src={bg}
+          alt="Герой"
+          fill
+          priority
+          unoptimized
+          style={{
+            objectFit: 'cover',
+            objectPosition: 'center top',
+          }}
+        />
+      </Box>
+
+      {/* Логотип в левом верхнем углу */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: {
+            xs: 24,
+            md: 40,
+          },
+          left: {
+            xs: 24,
+            md: 48,
+          },
+          zIndex: 10,
+        }}
+      >
+        <Image
+          src={MyLogo}
+          alt="No Bad Days VPN"
           priority
         />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+        <Box sx={{
+          position: 'relative',
+          zIndex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
+          px: {
+            xs: 3,
+            md: 4,
+          },
+          pt: {
+            xs: 20,
+            md: 0,
+          }, // отступ сверху только на мобиле
+        }}
+        />
+      </Box>
+
+      {/* Основной контент — поверх фона */}
+      <Box sx={{
+        position: 'absolute',
+        zIndex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        height: '100%',
+        width: '100%',
+      }}
+      >
+        <Auth />
+      </Box>
+      <GlobalSnackbar />
+    </Box>
+  )
 }
