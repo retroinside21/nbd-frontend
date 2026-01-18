@@ -21,6 +21,7 @@ WORKDIR /app
 ENV PORT=7000
 
 EXPOSE 7000
+
 ENV NODE_ENV=production
 
 COPY --from=builder /app/public ./public
