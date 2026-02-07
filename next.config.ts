@@ -13,9 +13,7 @@ const nextConfig: NextConfig = {
     styledComponents: false, // если используешь Emotion/MUI, можно оставить false
   },
   // Это заставляет Next.js игнорировать Host и принимать запросы
-  experimental: {
-    serverComponentsExternalPackages: ['next'],
-  },
+  experimental: {},
   basePath: '',
   assetPrefix: '',
 }

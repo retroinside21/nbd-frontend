@@ -23,6 +23,8 @@ ENV PORT=7000
 EXPOSE 7000
 
 ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
