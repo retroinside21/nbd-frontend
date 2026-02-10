@@ -57,7 +57,6 @@ const Buys = () => {
   } = useAuth()
 
   const handleChangeTarrif = (plan: Tariff | null) => {
-    console.log('f')
     setTarrifState(plan)
   }
 

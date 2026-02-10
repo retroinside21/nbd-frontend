@@ -65,10 +65,14 @@ export function AdminContent({
       fetchDataUsers(), fetchTariffs()])
   }, [tg_id, email])
 
-  // useEffect(() => {
-  //   fetchPaymentHistory(tg_id || email)
-  // }, [tg_id, email, pageHistory, sortByHistory, orderHistory])
+  useEffect(() => {
+    fetchPaymentHistory({
+      tg_id: tg_id?.toString(),
+      email,
+    })
+  }, [tg_id, email, pageHistory, sortByHistory, orderHistory])
 
+  console.log(pageHistory, sortByHistory, orderHistory)
   return (
     <Grid
       sx={{

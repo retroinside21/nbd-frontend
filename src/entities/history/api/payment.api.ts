@@ -1,7 +1,8 @@
 import api from '@/shared/api/api'
 
 export const getPaymentHistory = async (params: {
-  tg_id: string
+  tg_id?: string
+  email?: string
   limit: number
   offset: number
   sortBy?: string

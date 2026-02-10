@@ -27,7 +27,7 @@ interface PaymentHistoryState {
 
   setPage: (page: number) => void
   setSort: (field: SortField) => void
-  fetchPaymentHistory: (tg_id: string) => Promise<void>
+  fetchPaymentHistory: (props: { tg_id?: string; email?: string }) => Promise<void>
 }
 
 export const usePaymentHistoryStore = create<PaymentHistoryState>((set, get) => ({
@@ -57,35 +57,51 @@ export const usePaymentHistoryStore = create<PaymentHistoryState>((set, get) => 
     })
   },
 
-  fetchPaymentHistory: async (tg_id) => {
+  fetchPaymentHistory: async (props: { tg_id?: string; email?: string } = {}) => {
     const {
       page,
       rowsPerPage,
       sortBy,
       order,
-      fetched,
+      // fetched,
       loading,
     } = get()
 
-    if (fetched || loading) return
+    if (loading) return
+
     set({
       loading: true,
     })
 
-    const offset = (page - 1) * rowsPerPage
+    try {
+      const offset = (page - 1) * rowsPerPage
 
-    const data = await getPaymentHistory({
-      tg_id,
-      limit: rowsPerPage,
-      offset,
-      sortBy,
-      order,
-    })
+      const queryParams: any = {
+        limit: rowsPerPage,
+        offset,
+        sortBy,
+        order,
+      }
 
-    set({
-      payments: data.payments,
-      total: data.total,
-      loading: false,
-    })
+      if (props.email) {
+        queryParams.email = props.email.trim().toLowerCase()
+      } else if (props.tg_id) {
+        queryParams.tg_id = String(props.tg_id)
+      }
+
+      const data = await getPaymentHistory(queryParams)
+
+      set({
+        payments: data.payments ?? [],
+        total: data.total ?? 0,
+        loading: false,
+        fetched: true,
+      })
+    } catch (err) {
+      console.error('Ошибка загрузки истории платежей:', err)
+      set({
+        loading: false,
+      })
+    }
   },
 }))
