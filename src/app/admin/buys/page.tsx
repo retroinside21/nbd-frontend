@@ -12,8 +12,7 @@ import {
 import {
   useState,
 } from 'react'
-// import TabsBar from '@/shared/ui/tabsbar/TabsBar'
-// import InfoPanel from '@/shared/ui/info/info'
+
 import PurchaseModal from '@/features/subscribe/ui/purchaseModal/PurchaseModal'
 import {
   useAuth,
