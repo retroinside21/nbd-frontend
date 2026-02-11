@@ -12,6 +12,7 @@ import {
 } from '@/features/auth/providers/AuthProvider'
 import {
   createPayment,
+  createPaymentEmail,
 } from '@/app/admin/buys/page'
 import {
   Tariff,
@@ -61,8 +62,14 @@ const SubcribeBuy = () => {
 
   const handlePayment = async (deviceCount: number, priceOneDevice: number) => {
     if (!tarrifState) return
-    if (!tg_id) return
-    const res = await createPayment(tarrifState.id, Number(tg_id), deviceCount, priceOneDevice)
+
+    let res
+    if (tg_id) {
+      res = await createPayment(tarrifState.id, Number(tg_id), deviceCount, priceOneDevice)
+    } else {
+      res = await createPaymentEmail(tarrifState.id, email, deviceCount, priceOneDevice)
+    }
+
     if (res.data.success) window.location.href = res.data.confirmation_url
   }
 
