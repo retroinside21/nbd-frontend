@@ -24,6 +24,7 @@ const AuthTitle = ({
         justifyContent: 'center', // центрирует по вертикали
         alignItems: 'center', // центрирует по горизонтали
         textAlign: 'center',
+        '@media (max-height: 850px)': {},
         px: {
           xs: 3,
           md: 4,
@@ -32,6 +33,7 @@ const AuthTitle = ({
           xs: 20,
           md: 0,
         }, // отступ сверху только на мобиле
+
       }}
     >
       <Typography
@@ -42,8 +44,15 @@ const AuthTitle = ({
             md: '4.375rem',
           },
           mb: 2,
-
           lineHeight: 0.9,
+          '@media (max-height: 940px)': {
+            fontSize: '3rem',
+            mb: 1,
+          },
+          '@media (max-height: 920px)': {
+            fontSize: '3rem',
+            mb: 1,
+          },
         }}
         variant="h2"
       >
@@ -57,6 +66,10 @@ const AuthTitle = ({
           fontSize: '1.25rem',
           color: 'var(--color-gray)',
           mb: 8,
+          '@media (max-height: 940px)': {
+            mb: 4,
+            fontSize: '.8rem',
+          },
         }}
         variant="body2"
       >
@@ -75,9 +88,12 @@ const AuthTitle = ({
           borderRadius: '.5rem',
           px: 4,
           py: 1.5,
-          mb: 10,
+          mb: 5,
           '&:hover': {
             backgroundColor: '#e6007e', // чуть темнее при hover
+          },
+          '@media (max-height: 940px)': {
+            mb: 1,
           },
         }}
       >

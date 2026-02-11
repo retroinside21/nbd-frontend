@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  // baseURL: 'http://155.212.189.107/api',
+  // baseURL: 'http://localhost:3000/api',
   baseURL: 'https://app.nobaddays.site/api',
   headers: {
     'Content-Type': 'application/json',

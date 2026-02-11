@@ -22,9 +22,6 @@ import {
   formatDate,
 } from '@/shared/lib/date/formatDate'
 
-// import {
-//   ArrowDownward, ArrowUpward,
-// } from '@mui/icons-material'
 import {
   Order,
 } from '@/widgets/model/types'
@@ -37,7 +34,7 @@ interface Data {
   created_at: string;
   purchase: string;
   amount: number;
-  status: 'success' | 'fail';
+  status: 'succeeded' | 'failed';
 }
 
 interface HeadCell {
@@ -192,10 +189,10 @@ export default function PaymentsTable({
                         mr: 1,
                         fontSize: '14px',
                         fontWeight: 500,
-                        color: row.status === 'success' ? '#00B155' : '#F31C20',
+                        color: row.status === 'succeeded' ? '#00B155' : '#F31C20',
                       }}
                     >
-                      {row.status === 'success' ? 'Успешно' : 'Отказ'}
+                      {row.status === 'succeeded' ? 'Успешно' : 'Отказ'}
                     </Typography>
                   </TableCell>
                 </TableRow>

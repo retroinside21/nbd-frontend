@@ -197,16 +197,34 @@ const AuthForm = ({
         mx: 'auto',
         textAlign: 'center',
         p: 4,
+        '@media (max-height: 940px)': {
+          py: 1,
+          px: 4,
+        },
       }}
     >
-      <Typography variant="h5" fontWeight={400} mb={1}>
+      <Typography
+        variant="h5"
+        fontWeight={400}
+        sx={{
+          mb: 1,
+          '@media (max-height: 940px)': {
+            mb: 0.5,
+          },
+        }}
+      >
         Добро пожаловать!
       </Typography>
 
       <Typography
         variant="body2"
         color="var(--color-secondary)"
-        mb={3}
+        sx={{
+          mb: 3,
+          '@media (max-height: 940px)': {
+            mb: 1.5,
+          },
+        }}
       >
         Для входа используйте email или telegram.
       </Typography>
@@ -215,7 +233,14 @@ const AuthForm = ({
     //   onSubmit={handleSubmit(onSubmit)}
         noValidate
       >
-        <Stack spacing={2}>
+        <Stack
+          sx={{
+            gap: 2,
+            '@media (max-height:940px)': {
+              gap: 1,
+            },
+          }}
+        >
           <TextField
             label="Email"
             variant="outlined"
@@ -283,6 +308,9 @@ const AuthForm = ({
             textTransform: 'none',
             fontWeight: 600,
             mt: 7,
+            '@media (max-height: 940px)': {
+              mt: 3,
+            },
           }}
         >
           НА ГЛАВНУЮ
