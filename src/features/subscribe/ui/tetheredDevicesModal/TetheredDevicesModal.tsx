@@ -287,7 +287,7 @@ const TetheredDevicesModal = ({
                             ].map(({
                               label, value,
                             }) => (
-                              <InfoBlock label={label} value={value} />
+                              <InfoBlock key={value} label={label} value={value} />
                             ))}
                           </Stack>
                         </Box>

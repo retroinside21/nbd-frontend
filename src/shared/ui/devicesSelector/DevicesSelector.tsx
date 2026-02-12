@@ -9,10 +9,12 @@ const DEVICES = [1, 2, 3, 4, 5, 6]
 interface IProps{
     onSelect: (select: number) => void
     activeStep: number
+    countDisable?: number
 }
 const DevicesSelector = ({
   onSelect,
   activeStep = 1,
+  countDisable = 0,
 }: IProps) => {
   return (
     <Box>
@@ -29,7 +31,7 @@ const DevicesSelector = ({
       >
         {DEVICES.map((item) => {
           const isActive = item === activeStep
-
+          const isDisable = item <= countDisable
           return (
             <Box
               key={item}
@@ -43,8 +45,8 @@ const DevicesSelector = ({
                 justifyContent: 'center',
                 fontSize: '20px',
                 fontWeight: 500,
-                cursor: 'pointer',
-
+                cursor: isDisable ? 'default' : 'pointer',
+                pointerEvents: isDisable ? 'none' : 'auto',
                 ...(isActive
                   ? {
                     border: '5px solid var(--color-blue)',

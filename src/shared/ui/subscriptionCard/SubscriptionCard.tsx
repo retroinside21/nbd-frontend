@@ -19,6 +19,7 @@ import {
   CheckCircleOutlineRounded,
   ContentCopy,
   Devices,
+  ExpandLessTwoTone,
   QrCode,
 } from '@mui/icons-material'
 import {
@@ -29,6 +30,7 @@ import {
   useSnackbar,
 } from '@/features/notify/model/strores/useSnackbar'
 import QrModal from '@/features/subscribe/ui/QrModal/QrModal'
+import UpgradeModal from '@/features/subscribe/ui/upgradeModal/UpgradeModal'
 import EditableUsername from '../editableUsername/EditableUsername'
 import CardSubscribeContainer from '../cardSubscribeContainer/CardSubscribeContainer'
 
@@ -38,7 +40,16 @@ interface SubscriptionCardProps {
   data: IRemnaUserKey;
 }
 
-// Devices
+export async function createPaymentEmail(tariffId: number, email: string, deviceCount: number, priceOneDevice: number) {
+  const res: any = await api.post('/payment/yookassa/update/subscribe', {
+    tariff_id: tariffId,
+    email,
+    hwid: deviceCount,
+    price: priceOneDevice,
+  })
+
+  return res
+}
 
 const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
   onClickSetDevices,
@@ -46,6 +57,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
   data,
 }) => {
   const [isQrOpen, setIsQrOpen] = useState(false)
+  const [isOpenUpgrade, setIsOpenUpgrade] = useState(false)
 
   const expiry = DateTime.fromISO(data.expireAt, {
     zone: 'utc',
@@ -59,10 +71,6 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
     : daysLeft % 10 >= 2 && daysLeft % 10 <= 4 && (daysLeft < 10 || daysLeft > 20)
       ? 'дня'
       : 'дней'
-
-  // const handleDownloadConfig = () => {
-  //   window.location.href = `happ://add/${data.subscriptionUrl}`
-  // }
 
   const handleChangeName = async (newName: string) => {
     try {
@@ -106,6 +114,41 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
     }
   }, [data.status])
 
+  const {
+    local_tariff_id,
+    email,
+  } = data
+
+  // daysLeft - для расчета сколько дней осталось
+  // hwidDeviceLimit - для расчета
+  // PRICE_ONE_DEVICE
+  // formattedDate - Дата окончания подписки в формате ДД-ММ-ГГГГ
+  const handleCloseUpdateSubscribe = () => {
+    setIsOpenUpgrade(false)
+  }
+  const handleUpdateSubscribe = async (deviceCount: number, priceOneDevice: number) => {
+    if (!local_tariff_id) return
+    if (!email) return
+
+    try {
+      const res = await createPaymentEmail(local_tariff_id, email, deviceCount, priceOneDevice)
+      if (res.data.success) {
+        handleCloseUpdateSubscribe()
+        window.location.href = res.data.confirmation_url
+      }
+    } catch (err: any) {
+      show('Ошибка при обновлении подписки', 'error')
+      console.error('Ошибка при обновлении подписки:', err)
+    }
+  }
+
+  const handleOpenUpdateSubscribe = () => {
+    setIsOpenUpgrade(true)
+  }
+
+  // Найти сколько дней осталось и посчитать стоимость продления, например, 70 руб в день за устройство
+
+  // yookassa/update/subscribe
   return (
     <>
       <Box
@@ -332,6 +375,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                           {data.devices_count}
                           {' '}
                           из
+                          {' '}
                           {data.hwidDeviceLimit}
                         </Typography>
                       </Stack>
@@ -465,6 +509,44 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                 </Typography>
               </Box>
 
+              <Box sx={{
+                bgcolor: '#FFFFFF',
+                p: 2,
+                width: '218px',
+                borderRadius: 2,
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+              >
+                <IconButton
+                  sx={{
+                    bgcolor: 'var(--color-blue)',
+                    width: '52px',
+                    height: '32px',
+                    borderRadius: 12.5,
+                    alignSelf: 'flex-end',
+                    mb: 3,
+                    '&:hover svg': {
+                      color: 'var(--color-blue)',
+                    },
+                  }}
+                  onClick={handleOpenUpdateSubscribe}
+                >
+                  <ExpandLessTwoTone sx={{
+                    color: '#FFFFFF',
+                  }}
+                  />
+                </IconButton>
+                <Typography sx={{
+                  textTransform: 'uppercase',
+                  color: 'var(--color-blue)',
+                  fontSize: '14px',
+                }}
+                >
+                  Увеличить лимит устройств
+                </Typography>
+              </Box>
+
             </Box>
           </CardSubscribeContainer>
 
@@ -494,6 +576,17 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
         open={isQrOpen}
         onClose={() => setIsQrOpen(false)}
         subcriptionLink={data.subscriptionUrl}
+      />
+
+      <UpgradeModal
+        open={isOpenUpgrade}
+        onClose={handleCloseUpdateSubscribe}
+        tariffData={data}
+        onPayment={handleUpdateSubscribe}
+        // price={tarrifState?.price_rub || 0}
+        // period={tarrifState?.name || ''}
+        // perMonth={tarrifState?.duration_days || 0}
+        // activeDevice={activeDevice}
       />
     </>
   )

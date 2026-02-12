@@ -16,6 +16,16 @@ const nextConfig: NextConfig = {
   experimental: {},
   basePath: '',
   assetPrefix: '',
+
+  async rewrites() {
+    return [
+      {
+        // Все запросы на /api/* будут перенаправлены на прод-бэкенд
+        source: '/api/:path*',
+        destination: 'https://app.nobaddays.site/api/:path*',
+      },
+    ]
+  },
 }
 
 export default nextConfig

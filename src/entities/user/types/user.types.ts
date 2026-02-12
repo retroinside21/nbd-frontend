@@ -101,6 +101,8 @@ export interface IRemnaUserKey {
 
   tariff_id: number;
 
+  local_tariff_id: number;
+
   tariff_name:string
 
   devices_count: number

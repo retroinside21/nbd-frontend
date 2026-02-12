@@ -23,7 +23,7 @@ interface PurchaseModalProps {
   activeDevice: number;
 }
 
-const PRICE_ONE_DEVICE = 70
+export const PRICE_ONE_DEVICE = 70
 
 const PurchaseModal: React.FC<PurchaseModalProps> = ({
   open,
@@ -35,7 +35,6 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({
   activeDevice,
 }) => {
   const [method, setMethod] = useState('СБП')
-  // const [devices, setDevices] = useState<number>(1)
 
   const onChangePayment = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMethod(event.target.value)
