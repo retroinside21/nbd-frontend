@@ -1,3 +1,5 @@
+/* eslint-disable id-length */
+
 'use client'
 
 import SubscriptionCardTitle from '@/entities/subscription/ui/SubscriptionCardTitle'
@@ -18,23 +20,42 @@ const History = () => {
     >
       <CardTitle
         classNameContainer={{
-          marginBottom: '20px',
-          height: 160,
+          mb: {
+            md: 2.5,
+            xs: 2,
+          },
+          height: {
+            xs: 140,
+            md: 160,
+          },
+          '@media (max-width: 600px)': {
+            height: 120,
+          },
         }}
       >
         <SubscriptionCardTitle image={historyImage}>
           <Box
-            p={2}
             sx={{
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
+              p: {
+                md: 2,
+                xs: 1,
+              },
             }}
           >
-            <Typography variant="h4">
+            <Typography
+              variant="h4"
+              sx={{
+                fontSize: {
+                  xs: 26,
+                },
+              }}
+            >
               История оплат
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="text.secondary" maxWidth={308}>
               Удобный доступ к вашим предыдущим
               <br />
               оплатам за подписки и подарки

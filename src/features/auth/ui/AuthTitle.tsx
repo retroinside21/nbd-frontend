@@ -24,13 +24,12 @@ const AuthTitle = ({
         justifyContent: 'center', // центрирует по вертикали
         alignItems: 'center', // центрирует по горизонтали
         textAlign: 'center',
-        '@media (max-height: 850px)': {},
         px: {
-          xs: 3,
+          xs: 1.5,
           md: 4,
         },
         pt: {
-          xs: 20,
+          xs: 3,
           md: 0,
         }, // отступ сверху только на мобиле
 

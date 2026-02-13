@@ -102,11 +102,21 @@ export default function PaymentsTable({
       >
         <TableContainer>
           <Table sx={{
-            minWidth: 650,
+            minWidth: '100%',
           }}
           >
             <TableHead>
-              <TableRow>
+              <TableRow sx={{
+                display: {
+                  xs: 'flex',
+                  sm: 'table-row',
+                },
+                '@media (max-width: 600px)': {
+                  justifyContent: 'space-between',
+                  borderBottom: '1px solid rgba(224, 224, 224, 1)',
+                },
+              }}
+              >
                 {headCells.map((headCell) => (
                   <TableCell
                     key={headCell.id}
@@ -116,6 +126,12 @@ export default function PaymentsTable({
                       color: '#666',
                       fontSize: '14px',
                       py: 2,
+                      '@media (max-width: 600px)': {
+                        borderBottom: 'none',
+                      },
+                      '@media (max-width: 400px)': {
+                        px: 1,
+                      },
                     }}
                   >
                     {headCell.sortable ? (
@@ -158,12 +174,43 @@ export default function PaymentsTable({
 
             <TableBody>
               {payments.map((row) => (
-                <TableRow key={row.payment_id}>
+                <TableRow
+                  key={row.payment_id}
+                  sx={{
+                    display: {
+                      xs: 'flex',
+                      sm: 'table-row',
+                    },
+                    mb: {
+                      xs: 2,
+                      sm: 0,
+                    },
+                    '@media (max-width: 600px)': {
+                      justifyContent: 'space-between',
+                      borderBottom: '1px solid rgba(224, 224, 224, 1)',
+                    },
+                    borderColor: 'divider',
+                    borderRadius: {
+                      xs: 2,
+                      sm: 0,
+                    },
+                    overflow: 'hidden',
+                    bgcolor: {
+                      xs: 'background.paper',
+                      sm: 'inherit',
+                    },
+                  }}
+                >
                   <TableCell
                     sx={{
                       color: '#333',
                       fontSize: '14px',
-
+                      '@media (max-width: 600px)': {
+                        borderBottom: 'none',
+                      },
+                      '@media (max-width: 400px)': {
+                        px: 1,
+                      },
                     }}
                   >
                     <Typography variant="body2">
@@ -173,15 +220,29 @@ export default function PaymentsTable({
                   <TableCell sx={{
                     fontWeight: 600,
                     fontSize: '14px',
+                    '@media (max-width: 600px)': {
+                      borderBottom: 'none',
+                    },
+                    '@media (max-width: 400px)': {
+                      px: 1,
+                    },
                   }}
                   >
                     <Typography variant="body2">
-                      {row.amount.toLocaleString('ru-RU')}
+                      {Number(row.amount).toFixed(2)}
                       {' '}
                       ₽
                     </Typography>
                   </TableCell>
-                  <TableCell>
+                  <TableCell sx={{
+                    '@media (max-width: 600px)': {
+                      borderBottom: 'none',
+                    },
+                    '@media (max-width: 400px)': {
+                      px: 1,
+                    },
+                  }}
+                  >
                     <Typography
                       variant="body2"
                       sx={{

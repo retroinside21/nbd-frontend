@@ -36,11 +36,7 @@ export default function RootLayout({
           minHeight: '100vh',
         }}
       >
-        <main style={{
-          flex: 1,
-          // background: 'var(--color-bgGray)',
-        }}
-        >
+        <main>
           <AuthProvider>
             {children}
           </AuthProvider>

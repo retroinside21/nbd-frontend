@@ -36,9 +36,9 @@ export default function EditableUsername({
     }
   }, [isEditing])
 
-  const handleStartEdit = () => {
-    setIsEditing(true)
-  }
+  // const handleStartEdit = () => {
+  //   setIsEditing(true)
+  // }
 
   const handleCancel = () => {
     setName(initialName || 'q4wex901')
@@ -120,7 +120,7 @@ export default function EditableUsername({
             {name}
           </Typography>
 
-          <IconButton
+          {/* <IconButton
             size="small"
             onClick={handleStartEdit}
             sx={{
@@ -131,7 +131,7 @@ export default function EditableUsername({
             }}
           >
             <EditIcon fontSize="small" />
-          </IconButton>
+          </IconButton> */}
         </>
       )}
     </Stack>

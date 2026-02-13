@@ -74,6 +74,9 @@ const SideBar = () => {
       flexDirection: 'column',
       justifyContent: 'space-between',
       height: 'calc(100vh - 10vh)',
+      '@media (max-width: 1000px)': {
+        display: 'none',
+      },
     }}
     >
       <Box

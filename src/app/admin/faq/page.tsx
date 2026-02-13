@@ -1,3 +1,4 @@
+/* eslint-disable id-length */
 import SubscriptionCardTitle from '@/entities/subscription/ui/SubscriptionCardTitle'
 import {
   CardTitle,
@@ -16,8 +17,17 @@ const Faq = () => {
     >
       <CardTitle
         classNameContainer={{
-          marginBottom: '20px',
-          height: 160,
+          mb: {
+            md: 2.5,
+            xs: 2,
+          },
+          height: {
+            xs: 140,
+            md: 160,
+          },
+          '@media (max-width: 600px)': {
+            height: 120,
+          },
         }}
       >
         <SubscriptionCardTitle
@@ -25,14 +35,24 @@ const Faq = () => {
 
         >
           <Box
-            p={2}
             sx={{
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
+              p: {
+                md: 2,
+                xs: 1,
+              },
             }}
           >
-            <Typography variant="h4">
+            <Typography
+              variant="h4"
+              sx={{
+                fontSize: {
+                  xs: 26,
+                },
+              }}
+            >
               Частые вопросы
             </Typography>
             <Typography variant="body2" color="text.secondary">

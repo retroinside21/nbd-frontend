@@ -40,7 +40,20 @@ export default function AdminLayout({
           justifyContent: 'center',
         }}
       >
-        <Grid container spacing={4}>
+        <Grid
+          container
+          spacing={{
+            xs: 0,
+            md: 4,
+          }}
+          sx={{
+            mx: {
+              xs: -2,
+              md: 0,
+            },
+            width: '100%',
+          }}
+        >
           <SideBar />
           <AdminContent>
             {children}

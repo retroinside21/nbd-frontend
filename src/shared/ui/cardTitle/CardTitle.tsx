@@ -26,7 +26,7 @@ export const CardTitle = ({
     sx={{
       borderRadius: 2,
       boxShadow: shadows.md,
-      height: 180,
+      height: '100%',
       backgroundColor: 'background.paper',
       ...classNameContainer,
     }}

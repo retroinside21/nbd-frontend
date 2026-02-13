@@ -306,9 +306,32 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                   }}
                 >
                   <Stack spacing={1.5} mt={1} width="100%">
-                    <Stack direction="row" spacing={2} alignItems="center" justifyContent="space-between">
+                    <Stack
+                      sx={{
+                        gap: 2,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+
+                        '@media (max-width: 620px)': {
+                          flexWrap: 'wrap',
+                          justifyContent: 'flex-start',
+                          gap: 2,
+                        },
+                      }}
+                    >
                       {/* Тариф */}
-                      <Stack direction="column">
+                      <Stack
+                        direction="column"
+                        sx={{
+                          '@media (max-width: 620px)': {
+                            minWidth: '40%',
+                          },
+                          '@media (max-width: 430px)': {
+                            minWidth: '100%',
+                          },
+                        }}
+                      >
                         <Typography
                           sx={{
                             fontSize: '13px',
@@ -328,10 +351,28 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                         </Typography>
                       </Stack>
 
-                      <Divider orientation="vertical" flexItem />
+                      <Divider
+                        sx={{
+                          '@media (max-width: 680px)': {
+                            display: 'none',
+                          },
+                        }}
+                        orientation="vertical"
+                        flexItem
+                      />
 
                       {/* Группа */}
-                      <Stack direction="column">
+                      <Stack
+                        direction="column"
+                        sx={{
+                          '@media (max-width: 620px)': {
+                            minWidth: '40%',
+                          },
+                          '@media (max-width: 430px)': {
+                            minWidth: '100%',
+                          },
+                        }}
+                      >
                         <Typography
                           sx={{
                             fontSize: '13px',
@@ -353,10 +394,28 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                         </Typography>
                       </Stack>
 
-                      <Divider orientation="vertical" flexItem />
+                      <Divider
+                        sx={{
+                          '@media (max-width: 680px)': {
+                            display: 'none',
+                          },
+                        }}
+                        orientation="vertical"
+                        flexItem
+                      />
 
                       {/* Устройств */}
-                      <Stack direction="column">
+                      <Stack
+                        direction="column"
+                        sx={{
+                          '@media (max-width: 620px)': {
+                            minWidth: '40%',
+                          },
+                          '@media (max-width: 430px)': {
+                            minWidth: '100%',
+                          },
+                        }}
+                      >
                         <Typography
                           sx={{
                             fontSize: '13px',
@@ -380,10 +439,28 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                         </Typography>
                       </Stack>
 
-                      <Divider orientation="vertical" flexItem />
+                      <Divider
+                        sx={{
+                          '@media (max-width: 680px)': {
+                            display: 'none',
+                          },
+                        }}
+                        orientation="vertical"
+                        flexItem
+                      />
 
                       {/* Дата окончания подписки */}
-                      <Stack direction="column">
+                      <Stack
+                        direction="column"
+                        sx={{
+                          '@media (max-width: 620px)': {
+                            minWidth: '40%',
+                          },
+                          '@media (max-width: 430px)': {
+                            minWidth: '100%',
+                          },
+                        }}
+                      >
                         <Typography
                           sx={{
                             fontSize: '13px',
@@ -415,6 +492,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                           </span>
                         </Typography>
                       </Stack>
+
                     </Stack>
                   </Stack>
                 </Box>
@@ -428,6 +506,10 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
             <Box sx={{
               display: 'flex',
               gap: 1,
+              '@media (max-width: 550px)': {
+                flexDirection: 'column',
+                justifyContent: 'center',
+              },
             }}
             >
               <Box sx={{
@@ -437,6 +519,14 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                 borderRadius: 2,
                 display: 'flex',
                 flexDirection: 'column',
+                '@media (max-width: 550px)': {
+                  width: '100%',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexDirection: 'row',
+                  p: 2,
+                  gap: 1,
+                },
               }}
               >
                 <IconButton
@@ -449,6 +539,12 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                     mb: 3,
                     '&:hover svg': {
                       color: 'var(--color-blue)',
+                    },
+                    '@media (max-width: 550px)': {
+                      alignSelf: 'center',
+                      mb: 0,
+                      width: '32px',
+                      height: '22px',
                     },
                   }}
                   component="a"
@@ -478,6 +574,14 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                 borderRadius: 2,
                 display: 'flex',
                 flexDirection: 'column',
+                '@media (max-width: 550px)': {
+                  width: '100%',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexDirection: 'row',
+                  p: 2,
+                  gap: 1,
+                },
               }}
               >
                 <IconButton
@@ -491,6 +595,13 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                     '&:hover svg': {
                       color: 'var(--color-blue)',
                     },
+                    '@media (max-width: 550px)': {
+                      alignSelf: 'center',
+                      mb: 0,
+                      width: '32px',
+                      height: '22px',
+                    },
+
                   }}
                   onClick={onClickSetDevices}
                 >
@@ -516,6 +627,14 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                 borderRadius: 2,
                 display: 'flex',
                 flexDirection: 'column',
+                '@media (max-width: 550px)': {
+                  width: '100%',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexDirection: 'row',
+                  p: 2,
+                  gap: 1,
+                },
               }}
               >
                 <IconButton
@@ -528,6 +647,12 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                     mb: 3,
                     '&:hover svg': {
                       color: 'var(--color-blue)',
+                    },
+                    '@media (max-width: 550px)': {
+                      alignSelf: 'center',
+                      mb: 0,
+                      width: '32px',
+                      height: '22px',
                     },
                   }}
                   onClick={handleOpenUpdateSubscribe}
@@ -548,6 +673,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
               </Box>
 
             </Box>
+
           </CardSubscribeContainer>
 
           <Button

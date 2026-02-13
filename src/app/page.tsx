@@ -13,7 +13,10 @@ export default function Home() {
       sx={{
         minHeight: '90vh',
         position: 'relative',
-        bgcolor: 'var(--color-bgGray)',
+        // bgcolor: 'var(--color-bgGray)',
+        '@media (max-width: 840px)': {
+          minHeight: '80vh',
+        },
       }}
     >
       <Box
@@ -28,6 +31,10 @@ export default function Home() {
           },
           overflow: 'hidden',
           zIndex: 0,
+          '@media (max-width: 840px)': {
+            top: 40,
+            // zIndex: 10,
+          },
         }}
       >
         <Image
@@ -38,7 +45,7 @@ export default function Home() {
           unoptimized
           style={{
             objectFit: 'cover',
-            objectPosition: 'center top',
+            objectPosition: 'top center',
           }}
         />
       </Box>
@@ -93,6 +100,11 @@ export default function Home() {
         alignItems: 'center',
         height: '100%',
         width: '100%',
+        '@media (max-width: 840px)': {
+          height: 'auto',
+          bottom: 10,
+          bgcolor: 'var(--color-bgGray)',
+        },
       }}
       >
         <Auth />

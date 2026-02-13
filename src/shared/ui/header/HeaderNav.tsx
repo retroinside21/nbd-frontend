@@ -48,7 +48,14 @@ const HeaderNav = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Typography variant="body2">
+        <Typography
+          variant="body2"
+          sx={{
+            '@media (max-width: 7200px)': {
+              display: 'none',
+            },
+          }}
+        >
           Здравствуйте,
           {' '}
           <span style={{
@@ -64,6 +71,10 @@ const HeaderNav = () => {
           sx={{
             color: 'var(--color-blue)',
             p: 0.7,
+            '@media (max-width: 460px)': {
+              width: 32,
+              height: 32,
+            },
           }}
           onClick={handleCopyKey}
         >
@@ -78,6 +89,10 @@ const HeaderNav = () => {
         <IconButton sx={{
           color: 'var(--color-blue)',
           p: 0.7,
+          '@media (max-width: 460px)': {
+            width: 32,
+            height: 32,
+          },
         }}
         >
           <Public />
@@ -93,6 +108,10 @@ const HeaderNav = () => {
           sx={{
             color: 'var(--color-blue)',
             p: 0.7,
+            '@media (max-width: 460px)': {
+              width: 32,
+              height: 32,
+            },
           }}
           onClick={logout}
         >

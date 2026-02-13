@@ -22,6 +22,10 @@ const Footer = () => {
           xs: 2,
           sm: 4,
         },
+
+        '@media (max-width: 840px)': {
+          py: 1,
+        },
       }}
     >
       <Stack
@@ -32,12 +36,24 @@ const Footer = () => {
         spacing={2}
         justifyContent="space-between"
         alignItems={{
-          xs: 'flex-start',
+          xs: 'center',
           sm: 'center',
         }}
       >
         {/* Левый блок с авторскими правами */}
-        <Stack direction="row" spacing={2} flexWrap="wrap">
+        <Stack
+          direction="row"
+          spacing={2}
+          flexWrap="wrap"
+          sx={{
+            alignItems: {
+              xs: 'center',
+            },
+            justifyContent: {
+              xs: 'center',
+            },
+          }}
+        >
           <Typography variant="body2">
             © 2025 NBDVPN. Все права защищены.
           </Typography>

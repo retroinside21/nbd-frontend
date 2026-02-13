@@ -1,3 +1,4 @@
+/* eslint-disable id-length */
 import SubscriptionCardTitle from '@/entities/subscription/ui/SubscriptionCardTitle'
 import {
   CardTitle,
@@ -9,34 +10,63 @@ import {
 
 const Referrals = () => {
   return (
-    <CardTitle>
-      <SubscriptionCardTitle
-        image={historyImage}
+    <Box sx={{
+      py: 2,
+    }}
+    >
+      <CardTitle
         classNameContainer={{
-          marginBottom: '20px',
+          mb: {
+            md: 2.5,
+            xs: 2,
+          },
+          height: {
+            xs: 140,
+            md: 160,
+          },
+          '@media (max-width: 600px)': {
+            height: 120,
+          },
         }}
       >
-        <Box
-          p={2}
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
+        <SubscriptionCardTitle
+          image={historyImage}
+          classNameContainer={{
+            marginBottom: '20px',
           }}
         >
-          <Typography variant="h4">
-            Реферальная
-            <br />
-            программа
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Зарабатывайте, приглашая новых
-            <br />
-            пользователей
-          </Typography>
-        </Box>
-      </SubscriptionCardTitle>
-    </CardTitle>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              p: {
+                md: 2,
+                xs: 1,
+              },
+            }}
+          >
+            <Typography
+              variant="h4"
+              sx={{
+                fontSize: {
+                  xs: 26,
+                },
+              }}
+            >
+              Реферальная
+              <br />
+              программа
+            </Typography>
+            <Typography variant="body2" color="text.secondary" maxWidth={308}>
+              Зарабатывайте, приглашая новых
+              <br />
+              пользователей
+            </Typography>
+          </Box>
+        </SubscriptionCardTitle>
+      </CardTitle>
+    </Box>
   )
 }
 

@@ -26,15 +26,22 @@ const SubscriptionCardTitle = ({
       maxHeight: 180,
       overflow: 'hidden',
       ...classNameContainer,
+      height: '100%',
     }}
     >
       {children}
       <Box
         sx={{
           position: 'relative',
-          width: 362,
+          width: {
+            xs: 320,
+            md: 362,
+          },
           height: '100%',
           flexShrink: 0,
+          '@media (max-width: 600px)': {
+            display: 'none',
+          },
         }}
       >
         <Image

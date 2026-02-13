@@ -72,12 +72,15 @@ export function AdminContent({
     })
   }, [tg_id, email, pageHistory, sortByHistory, orderHistory])
 
-  console.log(pageHistory, sortByHistory, orderHistory)
   return (
     <Grid
       sx={{
         flex: '0 0 702px',
         maxWidth: '702px',
+        '@media (max-width: 1000px)': {
+          flex: '1 1 100%',
+          maxWidth: '100%',
+        },
       }}
     >
       {children}
